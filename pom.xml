@@ -14,6 +14,7 @@
         <assertj.version>3.20.2</assertj.version>
         <jcolor.version>5.0.1</jcolor.version>
         <junit.version>4.13.2</junit.version>
+        <mysql.version>8.0.23</mysql.version>
     </properties>
 
     <dependencies>
@@ -21,6 +22,11 @@
             <groupId>com.diogonunes</groupId>
             <artifactId>JColor</artifactId>
             <version>${jcolor.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
