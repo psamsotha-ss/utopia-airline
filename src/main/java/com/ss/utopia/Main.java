@@ -1,5 +1,6 @@
 package com.ss.utopia;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,21 +11,23 @@ import javax.sql.DataSource;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ss.utopia.console.Consoles;
 import com.ss.utopia.db.DatabaseManager;
 import com.ss.utopia.domain.Airplane;
 import com.ss.utopia.domain.AirplaneType;
+import com.ss.utopia.menu.Menus;
 
 public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
-    public static void main(String... args) throws SQLException {
-        System.out.println("Hello, Utopia!");
-        DatabaseManager dbManager = DatabaseManager.getInstance();
-        DataSource dataSource = dbManager.getDataSource();
-        System.out.println("DataSource loaded.");
-        Airplane airplane = getAirplane(1, dataSource);
-        System.out.println(airplane);
+    public static void main(String... args) throws SQLException, IOException {
+//        DatabaseManager dbManager = DatabaseManager.getInstance();
+//        DataSource dataSource = dbManager.getDataSource();
+//        Airplane airplane = getAirplane(1, dataSource);
+//        System.out.println(airplane);
+
+        Menus.newMainMenu(Consoles.newReaderConsole()).run();
     }
 
     private static Airplane getAirplane(int id, DataSource dataSource) throws SQLException {

@@ -95,7 +95,7 @@ INSERT INTO flight (id, route_id, airplane_id, departure_time, reserved_seats, s
 INSERT INTO flight (id, route_id, airplane_id, departure_time, reserved_seats, seat_price)
     VALUES (14, 14, 14, '2021-08-08 17:25:00', 20, 435.50);
 
-INSERT INTO user_role (id, name) VALUES (1, 'Agent');
+INSERT INTO user_role (id, name) VALUES (1, 'Employee');
 INSERT INTO user_role (id, name) VALUES (2, 'Administrator');
 INSERT INTO user_role (id, name) VALUES (3, 'Traveler');
 
