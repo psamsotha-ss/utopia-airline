@@ -87,4 +87,16 @@ public class Flight {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", route=" + route +
+                ", airplane=" + airplane +
+                ", departureTime=" + departureTime +
+                ", reservedSeats=" + reservedSeats +
+                ", seatPrice=" + seatPrice +
+                '}';
+    }
 }

@@ -55,4 +55,13 @@ public class BookingPayment {
     public int hashCode() {
         return booking != null ? booking.hashCode() : 0;
     }
+
+    @Override
+    public String toString() {
+        return "BookingPayment{" +
+                "booking=" + booking +
+                ", stripeId='" + stripeId + '\'' +
+                ", refunded=" + refunded +
+                '}';
+    }
 }

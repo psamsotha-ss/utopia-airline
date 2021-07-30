@@ -55,4 +55,13 @@ public class Booking {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", isActive=" + isActive +
+                ", confirmationCode='" + confirmationCode + '\'' +
+                '}';
+    }
 }

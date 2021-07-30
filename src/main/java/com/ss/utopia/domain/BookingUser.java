@@ -43,4 +43,12 @@ public class BookingUser {
         result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "BookingUser{" +
+                "booking=" + booking +
+                ", user=" + user +
+                '}';
+    }
 }

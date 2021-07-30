@@ -43,4 +43,12 @@ public class FlightBooking {
         result = 31 * result + (booking != null ? booking.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "FlightBooking{" +
+                "flight=" + flight +
+                ", booking=" + booking +
+                '}';
+    }
 }

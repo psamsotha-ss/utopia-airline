@@ -50,4 +50,13 @@ public class BookingGuest {
     public int hashCode() {
         return booking.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "BookingGuest{" +
+                "booking=" + booking +
+                ", contactEmail='" + contactEmail + '\'' +
+                ", contactPhone='" + contactPhone + '\'' +
+                '}';
+    }
 }

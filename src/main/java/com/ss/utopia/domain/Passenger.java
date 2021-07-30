@@ -101,4 +101,17 @@ public class Passenger {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "id=" + id +
+                ", booking=" + booking +
+                ", givenName='" + givenName + '\'' +
+                ", familyName='" + familyName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender='" + gender + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

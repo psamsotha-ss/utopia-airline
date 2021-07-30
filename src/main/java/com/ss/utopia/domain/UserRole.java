@@ -44,4 +44,12 @@ public class UserRole {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

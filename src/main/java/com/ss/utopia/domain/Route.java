@@ -55,4 +55,13 @@ public class Route {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "id=" + id +
+                ", origin=" + origin +
+                ", destination=" + destination +
+                '}';
+    }
 }

@@ -44,4 +44,12 @@ public class Airplane {
     public int hashCode() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Airplane{" +
+                "id=" + id +
+                ", type=" + type +
+                '}';
+    }
 }
