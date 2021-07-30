@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
 import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
+import com.ss.utopia.repository.JdbcFlightRepository;
+import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
@@ -13,10 +17,10 @@ public class MainMenu extends AbstractMenu {
 
     private final Map<Integer, Menu> childMenus = new HashMap<>();
 
-    public MainMenu(Console console) {
+    public MainMenu(Console console, DataSource dataSource) {
         super(console);
 
-        childMenus.put(1, new EmployeeMenu(console));
+        childMenus.put(1, new EmployeeMenu(console, new FlightService(new JdbcFlightRepository(dataSource))));
         childMenus.put(2, new AdministratorMenu(console));
         childMenus.put(3, new TravelerMenu(console));
     }

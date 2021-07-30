@@ -1,16 +1,23 @@
 package com.ss.utopia.menu;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
+import com.ss.utopia.domain.Airport;
+import com.ss.utopia.domain.Flight;
+import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
 class EmployeeMenu extends AbstractMenu {
 
-    EmployeeMenu(Console console) {
+    private final FlightService service;
+
+    EmployeeMenu(Console console, FlightService service) {
         super(console);
+        this.service = service;
     }
 
     @Override
@@ -50,6 +57,23 @@ class EmployeeMenu extends AbstractMenu {
     }
 
     private void runFlightManager() throws IOException {
-        print("Running flight manager...");
+        printNewLine();
+        print("Which flight would you like to manage:");
+        printNewLine();
+        List<Flight> flights = service.getFlights();
+        for (int i = 0; i < flights.size(); i++) {
+            Flight flight = flights.get(i);
+            print("  " + i + ") " + formatFlight(flight));
+        }
+        printNewLine();
+        String input = prompt("Enter your selection: ");
+        printNoColor("You selected: " + input);
     }
+
+    private String formatFlight(Flight flight) {
+        Airport origin = flight.getRoute().getOrigin();
+        Airport dest = flight.getRoute().getDestination();
+        return String.format("%s, %s ⤑ %s, %s", origin.getIataId(), origin.getCity(), dest.getIataId(), dest.getCity());
+    }
+
 }

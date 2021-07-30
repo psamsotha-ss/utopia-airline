@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -15,19 +16,25 @@ import com.ss.utopia.console.Consoles;
 import com.ss.utopia.db.DatabaseManager;
 import com.ss.utopia.domain.Airplane;
 import com.ss.utopia.domain.AirplaneType;
+import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.Menus;
+import com.ss.utopia.repository.FlightRepository;
+import com.ss.utopia.repository.JdbcFlightRepository;
 
 public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String... args) throws SQLException, IOException {
-//        DatabaseManager dbManager = DatabaseManager.getInstance();
-//        DataSource dataSource = dbManager.getDataSource();
-//        Airplane airplane = getAirplane(1, dataSource);
-//        System.out.println(airplane);
+        DatabaseManager dbManager = DatabaseManager.getInstance();
+        DataSource dataSource = dbManager.getDataSource();
+//        FlightRepository repository = new JdbcFlightRepository(dataSource);
+//        List<Flight> flights = repository.findAll();
+//        for (Flight flight: flights) {
+//            System.out.println(flight);
+//        }
 
-        Menus.newMainMenu(Consoles.newReaderConsole()).run();
+        Menus.newMainMenu(Consoles.newReaderConsole(), dataSource).run();
     }
 
     private static Airplane getAirplane(int id, DataSource dataSource) throws SQLException {
