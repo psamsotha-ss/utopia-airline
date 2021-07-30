@@ -63,7 +63,7 @@ class EmployeeMenu extends AbstractMenu {
         List<Flight> flights = service.getFlights();
         for (int i = 0; i < flights.size(); i++) {
             Flight flight = flights.get(i);
-            print("  " + i + ") " + formatFlight(flight));
+            print("  " + (i + 1) + ") " + formatFlight(flight));
         }
         printNewLine();
         String input = prompt("Enter your selection: ");
