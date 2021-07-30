@@ -23,6 +23,7 @@ public class MainMenu extends AbstractMenu {
 
     public void run() throws IOException {
         final String message = "Welcome to the Utopia Airlines Management System. Which category of a user are you:" + newLine()
+                + newLine()
                 + "  1) Employee" + newLine()
                 + "  2) Administrator" + newLine()
                 + "  3) Traveler" + newLine()
