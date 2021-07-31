@@ -82,7 +82,7 @@ ENGINE = InnoDB;
 -- Table `utopia`.`flight`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `utopia`.`flight` (
-  `id` INT UNSIGNED NOT NULL,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `route_id` INT UNSIGNED NOT NULL,
   `airplane_id` INT UNSIGNED NOT NULL,
   `departure_time` DATETIME NOT NULL,
