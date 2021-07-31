@@ -1,28 +1,39 @@
 package com.ss.utopia.menu;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
-import com.ss.utopia.repository.JdbcFlightRepository;
+import com.ss.utopia.repository.FlightRepository;
 import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
 public class MainMenu extends AbstractMenu {
 
+    private static final Logger logger = LogManager.getLogger(MainMenu.class);
+
     private final Map<Integer, Menu> childMenus = new HashMap<>();
 
     public MainMenu(Console console, DataSource dataSource) {
         super(console);
 
-        childMenus.put(1, new EmployeeMenu(console, new FlightService(new JdbcFlightRepository(dataSource))));
-        childMenus.put(2, new AdministratorMenu(console));
-        childMenus.put(3, new TravelerMenu(console));
+        try {
+            childMenus.put(1, new EmployeeMenu(console, new FlightService(new FlightRepository(dataSource.getConnection()))));
+            childMenus.put(2, new AdministratorMenu(console));
+            childMenus.put(3, new TravelerMenu(console));
+        } catch (SQLException ex) {
+            logger.error("Could not get connection: {}", ex.getMessage());
+            throw new IllegalStateException("Database connection could be be established.");
+        }
     }
 
     public void run() throws IOException {
