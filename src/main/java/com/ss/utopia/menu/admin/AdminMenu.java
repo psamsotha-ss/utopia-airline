@@ -10,11 +10,11 @@ import com.ss.utopia.menu.MenuSelection;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
-public class AdministratorMenu extends AbstractMenu {
+public class AdminMenu extends AbstractMenu {
 
     static final Color DEFAULT_COLOR = Color.BRIGHT_RED;
 
-    public AdministratorMenu(Console console) {
+    public AdminMenu(Console console) {
         super(console);
     }
 

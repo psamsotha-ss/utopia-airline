@@ -1,7 +1,6 @@
 package com.ss.utopia.menu.admin;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import com.ss.utopia.console.Console;
@@ -12,7 +11,7 @@ import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.Formatters.formatFlight;
 
-public class FlightDeleteOperation implements MenuOperation  {
+class FlightDeleteOperation implements MenuOperation  {
 
     private final FlightService flightService = new FlightService(new FlightRepository());
     private final Flight flight;

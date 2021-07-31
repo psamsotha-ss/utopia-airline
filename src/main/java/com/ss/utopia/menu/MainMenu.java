@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
-import com.ss.utopia.menu.admin.AdministratorMenu;
+import com.ss.utopia.menu.admin.AdminMenu;
 import com.ss.utopia.menu.employee.EmployeeMenu;
 import com.ss.utopia.menu.traveler.TravelerMenu;
 
@@ -33,7 +33,7 @@ public class MainMenu extends AbstractMenu {
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new EmployeeMenu(console));
-        selections.put(2, new AdministratorMenu(console));
+        selections.put(2, new AdminMenu(console));
         selections.put(3, new TravelerMenu(console));
         return selections;
     }
