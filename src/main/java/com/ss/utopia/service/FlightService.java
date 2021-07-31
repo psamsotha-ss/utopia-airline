@@ -14,18 +14,26 @@ public class FlightService {
 
     private static final Logger logger = LogManager.getLogger(FlightService.class);
 
-    private final FlightRepository repository;
+    private final FlightRepository flightRepo;
 
     public FlightService(FlightRepository repository) {
-        this.repository = repository;
+        this.flightRepo = repository;
     }
 
-    public List<Flight> getFlights() {
+    public List<Flight> getAllFlights() {
         try {
-            return repository.findAllFlights();
+            return flightRepo.findAllFlights();
         } catch (SQLException ex) {
-            logger.info("Problem loading flights: {}", ex.getMessage());
+            logger.error("Could not read flights: {}", ex.getMessage());
             return Collections.emptyList();
+        }
+    }
+
+    public void deleteFlight(Flight flight) {
+        try {
+            flightRepo.deleteFlight(flight);
+        } catch (SQLException ex) {
+            logger.error("Could not delete flight: {}: {}", flight, ex.getMessage());
         }
     }
 }

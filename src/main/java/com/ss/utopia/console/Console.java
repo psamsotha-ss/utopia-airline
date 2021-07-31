@@ -2,6 +2,9 @@ package com.ss.utopia.console;
 
 import java.io.IOException;
 
+/**
+ * A console which can be used to print to or to prompt for user input.
+ */
 public interface Console {
 
     /**

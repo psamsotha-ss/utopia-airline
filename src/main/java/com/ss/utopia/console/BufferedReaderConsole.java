@@ -3,6 +3,11 @@ package com.ss.utopia.console;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * A console which uses the standard output stream for output and
+ * a {@code BufferedReader} wrapped around the standard input stream to get
+ * input from a user.
+ */
 class BufferedReaderConsole implements Console {
 
     private final BufferedReader reader;

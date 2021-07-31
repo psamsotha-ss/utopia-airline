@@ -12,10 +12,19 @@ import static com.diogonunes.jcolor.Attribute.GREEN_TEXT;
 import static com.diogonunes.jcolor.Attribute.RED_TEXT;
 import static com.diogonunes.jcolor.Attribute.YELLOW_TEXT;
 
+/**
+ * Utility class for working with colors
+ */
 public class ColorUtil {
 
     private ColorUtil() {}
 
+    /**
+     * Get a colorized message
+     * @param message the message to colorize
+     * @param color the color to make the message
+     * @return the colorized message
+     */
     public static String getColoredMessage(String message, Color color) {
         switch (color) {
             case BLUE: return colorize(message, BLUE_TEXT());

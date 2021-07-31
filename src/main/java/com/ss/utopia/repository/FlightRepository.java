@@ -1,31 +1,17 @@
 package com.ss.utopia.repository;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.ss.utopia.db.DatabaseException;
 import com.ss.utopia.domain.Airport;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.domain.Route;
 import com.ss.utopia.util.Converters;
 
 public class FlightRepository extends AbstractBaseRepository<Flight> {
-
-    private static final Logger logger = LogManager.getLogger(FlightRepository.class);
-
-    public FlightRepository(Connection connection) {
-        super(connection);
-    }
 
     public List<Flight> findAllFlights() throws SQLException {
         final String sql = "SELECT f.id, f.departure_time, f.reserved_seats, f.seat_price, r.id, o.iata_id, o.city, d.iata_id, d.city " +
@@ -37,6 +23,11 @@ public class FlightRepository extends AbstractBaseRepository<Flight> {
         return find(sql, null);
     }
 
+    public void deleteFlight(Flight flight) throws SQLException {
+        final String sql = "DELETE FROM flight WHERE id = ?";
+        delete(sql, new Object[] { flight.getId() });
+    }
+
     @Override
     protected List<Flight> extractData(ResultSet rs) throws SQLException {
         List<Flight> flights = new ArrayList<>();
@@ -46,7 +37,7 @@ public class FlightRepository extends AbstractBaseRepository<Flight> {
             Airport origin = new Airport(originId, originCity);
 
             String destId = rs.getString(8);
-            String destCity = rs.getNString(9);
+            String destCity = rs.getString(9);
             Airport dest = new Airport(destId, destCity);
 
             int routeId = rs.getInt(5);
