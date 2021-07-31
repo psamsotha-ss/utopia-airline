@@ -2,6 +2,7 @@ package com.ss.utopia.menu.admin;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.ss.utopia.console.Color;
@@ -16,10 +17,12 @@ import static com.ss.utopia.util.StringUtils.newLine;
 class AdminFlightDetailMenu extends AbstractMenu {
 
     private final Flight flight;
+    private final List<Flight> flights;
 
-    AdminFlightDetailMenu(Console console, Flight flight) {
+    AdminFlightDetailMenu(Console console, Flight flight, List<Flight> flights) {
         super(console);
         this.flight = flight;
+        this.flights = flights;
     }
 
     @Override
@@ -45,7 +48,7 @@ class AdminFlightDetailMenu extends AbstractMenu {
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new FlightViewOperation(console, flight));
-        selections.put(2, new FlightDeleteOperation(console, flight));
+        selections.put(2, new FlightDeleteOperation(console, flight, flights));
         return selections;
     }
 }

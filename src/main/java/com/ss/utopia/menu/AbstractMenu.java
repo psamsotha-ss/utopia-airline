@@ -21,11 +21,11 @@ public abstract class AbstractMenu implements Menu, MenuSelection {
 
     @Override
     public void run() throws IOException {
-        final String initialPrompt = getInitialPrompt()
-                + newLine()
-                + "Make a selection ('q' to quit): ";
-
         while (true) {
+            String initialPrompt = getInitialPrompt()
+                    + newLine()
+                    + "Make a selection ('q' to quit): ";
+
             String input = prompt(initialPrompt);
             if ("q".equals(input)) {
                 printNoColor(getExitingMessage());
