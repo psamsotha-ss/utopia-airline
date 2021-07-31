@@ -5,28 +5,26 @@ import java.util.List;
 import java.util.Map;
 
 import com.ss.utopia.console.Color;
-import com.ss.utopia.console.Console;
-import com.ss.utopia.domain.Flight;
+import com.ss.utopia.domain.Airport;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
 
 import static com.ss.utopia.util.Formatters.formatFlight;
 import static com.ss.utopia.util.StringUtils.newLine;
 
-class AdminFlightDetailMenu extends AbstractMenu {
+public class AirportOptionsMenu extends AbstractMenu {
 
-    private final Flight flight;
-    private final List<Flight> flights;
+    private final List<Airport> airports;
+    private final Airport airport;
 
-    AdminFlightDetailMenu(Console console, Flight flight, List<Flight> flights) {
-        super(console);
-        this.flight = flight;
-        this.flights = flights;
+    AirportOptionsMenu(Airport airport, List<Airport> airports) {
+        this.airport = airport;
+        this.airports = airports;
     }
 
     @Override
     protected String getInitialPrompt() {
-        return "Flight: " + formatFlight(flight) + newLine()
+        return "Airport: " + airport.getIataId() + " - " + airport.getCity() + newLine()
                 + newLine()
                 + " 1) View Details" + newLine()
                 + " 2) Delete" + newLine()
@@ -40,15 +38,13 @@ class AdminFlightDetailMenu extends AbstractMenu {
 
     @Override
     protected String getExitingMessage() {
-        return "Returning to flights.";
+        return "Returning to Airports list.";
     }
 
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
-        selections.put(1, new FlightViewOperation(console, flight));
-        selections.put(2, new FlightDeleteOperation(console, flight, flights));
-        selections.put(3, new FlightUpdateMenu(console, flight));
+        selections.put(1, new AirportViewOperation(airport));
         return selections;
     }
 }
