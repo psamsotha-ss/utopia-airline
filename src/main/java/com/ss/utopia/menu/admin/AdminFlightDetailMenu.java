@@ -1,6 +1,5 @@
 package com.ss.utopia.menu.admin;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +48,7 @@ class AdminFlightDetailMenu extends AbstractMenu {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new FlightViewOperation(console, flight));
         selections.put(2, new FlightDeleteOperation(console, flight, flights));
+        selections.put(3, new FlightUpdateMenu(console, flight));
         return selections;
     }
 }

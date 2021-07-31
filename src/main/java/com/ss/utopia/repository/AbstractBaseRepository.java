@@ -53,13 +53,6 @@ public abstract class AbstractBaseRepository<T>  {
         ps.execute();
     }
 
-//    public T findOne(String sql, Object[] values) throws SQLException {
-//        PreparedStatement ps = connection.prepareStatement(sql);
-//        setStatementValues(ps, values);
-//        ResultSet rs = ps.executeQuery();
-//        return extractData(rs).get(0);
-//    }
-
     private void setStatementValues(PreparedStatement ps, Object[] values) throws SQLException {
         if (values != null) {
             for (int i = 0; i < values.length; i++) {

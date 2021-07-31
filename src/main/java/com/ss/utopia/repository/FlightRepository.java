@@ -28,6 +28,11 @@ public class FlightRepository extends AbstractBaseRepository<Flight> {
         delete(sql, new Object[] { flight.getId() });
     }
 
+    public void updateFlightField(Integer flightId, String field, Object value) throws SQLException {
+        final String sql = "UPDATE flight SET " + field + " = ? WHERE id = ?";
+        save(sql, new Object[] { value, flightId });
+    }
+
     @Override
     protected List<Flight> extractData(ResultSet rs) throws SQLException {
         List<Flight> flights = new ArrayList<>();

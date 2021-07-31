@@ -17,4 +17,12 @@ public class Consoles {
     public static Console newReaderConsole() {
         return new BufferedReaderConsole(new BufferedReader(new InputStreamReader(System.in)));
     }
+
+    /**
+     * Get the default console
+     * @return the console
+     */
+    public static Console getDefaultConsole() {
+        return newReaderConsole();
+    }
 }

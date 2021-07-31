@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
+import com.ss.utopia.console.Consoles;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
@@ -13,7 +14,13 @@ import static com.ss.utopia.util.StringUtils.newLine;
  */
 public abstract class AbstractMenu implements Menu, MenuSelection {
 
+    private static final String DEFAULT_PROMPT_LINE = "Make a selection ('q' to quit): ";
+
     protected final Console console;
+
+    protected AbstractMenu() {
+        this(Consoles.getDefaultConsole());
+    }
 
     protected AbstractMenu(Console console) {
         this.console = console;
@@ -24,7 +31,7 @@ public abstract class AbstractMenu implements Menu, MenuSelection {
         while (true) {
             String initialPrompt = getInitialPrompt()
                     + newLine()
-                    + "Make a selection ('q' to quit): ";
+                    + getLastPromptLine();
 
             String input = prompt(initialPrompt);
             if ("q".equals(input)) {
@@ -39,6 +46,8 @@ public abstract class AbstractMenu implements Menu, MenuSelection {
                 printNoColor(input + " is not a valid option.");
                 continue;
             }
+
+            printNewLine();
 
             Map<Integer, MenuSelection> selections = getMenuSelections();
             if (!selections.containsKey(option)) {
@@ -57,6 +66,14 @@ public abstract class AbstractMenu implements Menu, MenuSelection {
                 }
             }
         }
+    }
+
+    /**
+     * Get the last prompt line string.
+     * @return the prompt string
+     */
+    protected String getLastPromptLine() {
+        return DEFAULT_PROMPT_LINE;
     }
 
     /**

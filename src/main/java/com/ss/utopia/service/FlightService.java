@@ -36,4 +36,12 @@ public class FlightService {
             logger.error("Could not delete flight: {}: {}", flight, ex.getMessage());
         }
     }
+
+    public void updateFlightField(Flight flight, String field, Object value) {
+        try {
+            flightRepo.updateFlightField(flight.getId(), field, value);
+        } catch (SQLException ex) {
+            logger.error("Could not update flight field '{}' with value '{}': {}", field, value, ex);
+        }
+    }
 }
