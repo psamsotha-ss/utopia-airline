@@ -44,6 +44,7 @@ public class EmployeeOptionsMenu extends AbstractMenu {
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new EmployeeViewOperation(employee));
+        selections.put(3, new EmployeeDeleteOperation(employee, employees));
         return selections;
     }
 }

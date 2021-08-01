@@ -19,6 +19,10 @@ public class UserRepository extends AbstractBaseRepository<User> {
         return find(sql, new Object[] { roleName });
     }
 
+    public void deleteUser(Integer userId) throws SQLException {
+        final String sql = "DELETE FROM user WHERE id = ?";
+        delete(sql, new Object[] { userId });
+    }
 
     @Override
     protected List<User> extractData(ResultSet rs) throws SQLException {
