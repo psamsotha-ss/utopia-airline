@@ -8,7 +8,7 @@ import com.ss.utopia.domain.Airport;
 import com.ss.utopia.repository.AirportRepository;
 import com.ss.utopia.service.AirportService;
 
-public class AirportDeleteOperation extends AbstractConsoleAwareOperation {
+public class AirportDeleteOperation extends AbstractInputOperation {
 
     private final AirportService airportService = new AirportService(new AirportRepository());
     private final List<Airport> airports;

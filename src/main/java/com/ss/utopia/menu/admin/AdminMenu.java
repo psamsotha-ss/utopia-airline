@@ -35,6 +35,7 @@ public class AdminMenu extends AbstractMenu {
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new AdminFlightsMenu(console));
+        selections.put(2, new AdminSeatsMenu());
         selections.put(4, new AdminAirportsMenu());
         return selections;
     }
@@ -48,5 +49,4 @@ public class AdminMenu extends AbstractMenu {
     protected String getExitingMessage() {
         return "Returning to main menu.";
     }
-
 }

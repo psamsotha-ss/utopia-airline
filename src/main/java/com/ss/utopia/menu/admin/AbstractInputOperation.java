@@ -2,14 +2,24 @@ package com.ss.utopia.menu.admin;
 
 import java.io.IOException;
 
-/**
- * Abstract menu operation class that contains helper method for getting user input.
- */
-abstract class AbstractCreateOperation extends AbstractConsoleAwareOperation {
+import com.ss.utopia.console.Console;
+import com.ss.utopia.console.Consoles;
+import com.ss.utopia.menu.MenuOperation;
 
-    @Override
-    public boolean goBack() {
-        return false;
+public abstract class AbstractInputOperation implements MenuOperation {
+
+    private final Console console;
+
+    protected AbstractInputOperation() {
+        this(Consoles.getDefaultConsole());
+    }
+
+    protected AbstractInputOperation(Console console) {
+        this.console = console;
+    }
+
+    protected Console getConsole() {
+        return console;
     }
 
     /**

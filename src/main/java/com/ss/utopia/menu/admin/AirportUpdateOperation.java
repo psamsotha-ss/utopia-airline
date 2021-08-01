@@ -2,7 +2,7 @@ package com.ss.utopia.menu.admin;
 
 import java.io.IOException;
 
-public class AirportUpdateOperation extends AbstractConsoleAwareOperation {
+public class AirportUpdateOperation extends AbstractInputOperation {
 
     @Override
     public void runOperation() throws IOException {

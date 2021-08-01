@@ -2,7 +2,7 @@ package com.ss.utopia.menu.admin;
 
 import java.io.IOException;
 
-public abstract class AbstractViewOperation<T> extends AbstractConsoleAwareOperation {
+public abstract class AbstractViewOperation<T> extends AbstractInputOperation {
 
     private final T object;
 

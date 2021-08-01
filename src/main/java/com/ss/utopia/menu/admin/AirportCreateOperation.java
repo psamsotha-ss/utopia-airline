@@ -10,7 +10,7 @@ import com.ss.utopia.service.AirportService;
 
 import static java.util.Comparator.comparing;
 
-class AirportCreateOperation extends AbstractCreateOperation {
+class AirportCreateOperation extends AbstractInputOperation {
 
     private final List<Airport> airports;
 
@@ -33,5 +33,10 @@ class AirportCreateOperation extends AbstractCreateOperation {
             getConsole().print("Could not create airport.");
         }
         getConsole().printNewLine();
+    }
+
+    @Override
+    public boolean goBack() {
+        return false;
     }
 }

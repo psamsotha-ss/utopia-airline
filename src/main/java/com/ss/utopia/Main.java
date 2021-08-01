@@ -9,7 +9,7 @@ import com.ss.utopia.menu.Menus;
 public class Main {
 
     public static void main(String... args) throws IOException {
-         DatabaseManager dbManager = DatabaseManager.getInstance();
-         Menus.newMainMenu(Consoles.newReaderConsole()).run();
+        DatabaseManager dbManager = DatabaseManager.getInstance();
+        Menus.newMainMenu(Consoles.newReaderConsole()).run();
     }
 }
