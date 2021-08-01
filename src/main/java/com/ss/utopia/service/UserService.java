@@ -22,10 +22,23 @@ public class UserService {
     }
 
     public List<User> getAllEmployees() {
+        return getAllUsersByRoleName("Employee");
+    }
+
+    public List<User> getAllTravelers() {
+        return getAllUsersByRoleName("Traveler");
+    }
+
+    /**
+     * Get all users by role name
+     * @param roleName the role name
+     * @return the list of employees with the roleName. Returns an empty list if there is an error.
+     */
+    public List<User> getAllUsersByRoleName(String roleName) {
         try {
-            return repository.findUsersByRoleName("Employee");
+            return repository.findUsersByRoleName(roleName);
         } catch (SQLException ex) {
-            logger.error("Could not get employees: {}", ex.getMessage());
+            logger.error("Could not get users: {}", ex.getMessage());
             return Collections.emptyList();
         }
     }
@@ -39,6 +52,13 @@ public class UserService {
         }
     }
 
+    /**
+     * Update a field for a user
+     * @param user the user to update
+     * @param field the field to update
+     * @param value the new value for the field
+     * @throws PersistenceException if an error occurs updating the field
+     */
     public void updateUserField(User user, String field, Object value) throws PersistenceException {
         try {
             repository.updateUserField(user.getId(), field, value);
@@ -50,31 +70,60 @@ public class UserService {
 
     /**
      * Create a new employee
-     * @param emp the employee {@code User} object
+     * @param employee the employee {@code User} object
      * @return the updated employee obj with the generated id
-     * @throws PersistenceException if the user could not be created or the Employee role could be be found
+     * @throws PersistenceException if the user could not be created or the 'Employee' role could be be found
      * @throws IllegalArgumentException if the user object contains an id
      */
-    public User createNewEmployee(User emp) throws PersistenceException, IllegalArgumentException {
-        if (emp.getId() != null) {
+    public User createNewEmployee(User employee) throws PersistenceException, IllegalArgumentException {
+        return  createNewUserByRoleName(employee, "Employee");
+    }
+
+    /**
+     * Create a new traveler
+     * @param traveler the traveler {@code User} object
+     * @return the updated traveler obj with the generated id
+     * @throws PersistenceException if the user could not be created or the 'Traveler' role could be be found
+     * @throws IllegalArgumentException if the user object contains an id
+     */
+    public User createNewTraveler(User traveler) throws PersistenceException, IllegalArgumentException {
+        return createNewUserByRoleName(traveler, "Traveler");
+    }
+
+    /**
+     * Create a new user
+     * @param user the {@code User} object
+     * @param roleName the role name of the user
+     * @return the updated user object with the generated id
+     * @throws PersistenceException if the user could not be created or the role could be be found
+     * @throws IllegalArgumentException if the user object contains an id
+     */
+    public User createNewUserByRoleName(User user, String roleName) throws PersistenceException, IllegalArgumentException {
+        if (user.getId() != null) {
             throw new IllegalArgumentException("User cannot have an id.");
         }
         try {
-            Integer roleId = repository.findRoleIdByName("Employee");
+            Integer roleId = repository.findRoleIdByName(roleName);
             if (roleId == null) {
-                logger.info("Employee role name does not exist.");
-                throw new PersistenceException("Employee role name does not exist.");
+                logger.info("User role name does not exist.");
+                throw new PersistenceException("User role name does not exist.");
             }
-            Integer userId = repository.createNewUserWithRole(roleId, emp.getGivenName(), emp.getFamilyName(),
-                    emp.getUsername(), emp.getPassword(), emp.getEmail(), emp.getPhone());
-            emp.setId(userId);
+            Integer userId = repository.createNewUserWithRole(roleId, user.getGivenName(), user.getFamilyName(),
+                    user.getUsername(), user.getPassword(), user.getEmail(), user.getPhone());
+            user.setId(userId);
         } catch (SQLException ex) {
             logger.error("Could not create user: {}", ex.getMessage());
-            throw new PersistenceException("Employee could not be created", ex);
+            throw new PersistenceException("User could not be created", ex);
         }
-        return emp;
+        return user;
     }
 
+    /**
+     * Check if a phone number already exists. There cannot be duplicate phone numbers
+     * @param number the phone number to check
+     * @return true if the number exists, false if not
+     * @throws PersistenceException if there is a problem checking the number
+     */
     public boolean checkPhoneNumberExists(String number) throws PersistenceException {
         try {
             String dbNumber = repository.findPhoneNumber(number);

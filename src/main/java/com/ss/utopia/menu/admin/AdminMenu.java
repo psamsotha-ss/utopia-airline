@@ -11,6 +11,7 @@ import com.ss.utopia.menu.admin.airport.AdminAirportsMenu;
 import com.ss.utopia.menu.admin.employee.AdminEmployeesMenu;
 import com.ss.utopia.menu.admin.flight.AdminFlightsMenu;
 import com.ss.utopia.menu.admin.seat.AdminSeatsMenu;
+import com.ss.utopia.menu.admin.traveler.AdminTravelerMenu;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
@@ -41,6 +42,7 @@ public class AdminMenu extends AbstractMenu {
         selections.put(1, new AdminFlightsMenu(console));
         selections.put(2, new AdminSeatsMenu());
         selections.put(4, new AdminAirportsMenu());
+        selections.put(5, new AdminTravelerMenu());
         selections.put(6, new AdminEmployeesMenu());
         return selections;
     }

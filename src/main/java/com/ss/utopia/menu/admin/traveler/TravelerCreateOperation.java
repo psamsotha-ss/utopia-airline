@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin.employee;
+package com.ss.utopia.menu.admin.traveler;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,12 +11,12 @@ import com.ss.utopia.service.UserService;
 
 import static java.util.Comparator.comparing;
 
-class EmployeeCreateOperation extends AbstractInputOperation {
+class TravelerCreateOperation extends AbstractInputOperation {
 
-    private final List<User> employees;
+    private final List<User> travelers;
 
-    EmployeeCreateOperation(List<User> employees) {
-        this.employees = employees;
+    TravelerCreateOperation(List<User> travelers) {
+        this.travelers = travelers;
     }
 
     @Override
@@ -38,9 +38,9 @@ class EmployeeCreateOperation extends AbstractInputOperation {
             user.setPassword(password);
             user.setEmail(email);
             user.setPhone(phone);
-            user = service.createNewEmployee(user);
-            employees.add(user);
-            employees.sort(comparing(User::getFamilyName));
+            user = service.createNewTraveler(user);
+            travelers.add(user);
+            travelers.sort(comparing(User::getFamilyName));
             getConsole().printNewLine();
             getConsole().print("Employee created successfully.");
         } catch (PersistenceException ex) {

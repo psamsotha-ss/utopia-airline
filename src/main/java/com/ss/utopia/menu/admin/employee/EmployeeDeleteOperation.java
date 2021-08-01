@@ -23,7 +23,7 @@ class EmployeeDeleteOperation extends AbstractInputOperation {
         try {
             UserService service = new UserService(new UserRepository());
             service.deleteUser(employee);
-            employees.removeIf(e -> e.getId() == employee.getId());
+            employees.removeIf(e -> e.getId().equals(employee.getId()));
             getConsole().print("Employee deleted successfully.");
         } catch (Exception ex) {
             getConsole().print("Could not delete employee.");
