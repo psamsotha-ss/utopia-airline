@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.flight;
 
 import java.io.IOException;
 import java.util.List;

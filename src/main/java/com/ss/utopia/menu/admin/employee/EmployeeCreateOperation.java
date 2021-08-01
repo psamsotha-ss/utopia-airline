@@ -1,18 +1,19 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.employee;
 
 import java.io.IOException;
 import java.util.List;
 
 import com.ss.utopia.db.PersistenceException;
 import com.ss.utopia.domain.User;
+import com.ss.utopia.menu.admin.AbstractInputOperation;
 import com.ss.utopia.repository.UserRepository;
 import com.ss.utopia.service.UserService;
 
-public class EmployeeCreateOperation extends AbstractInputOperation {
+class EmployeeCreateOperation extends AbstractInputOperation {
 
     private final List<User> employees;
 
-    public EmployeeCreateOperation(List<User> employees) {
+    EmployeeCreateOperation(List<User> employees) {
         this.employees = employees;
     }
 
@@ -51,7 +52,7 @@ public class EmployeeCreateOperation extends AbstractInputOperation {
         return false;
     }
 
-    static class PhoneValidator implements InputValidator {
+    private static class PhoneValidator implements InputValidator {
 
         final UserService service;
 

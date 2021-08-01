@@ -1,8 +1,10 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.airport;
 
 import java.io.IOException;
 
-public class AirportUpdateOperation extends AbstractInputOperation {
+import com.ss.utopia.menu.admin.AbstractInputOperation;
+
+class AirportUpdateOperation extends AbstractInputOperation {
 
     @Override
     public void runOperation() throws IOException {

@@ -56,7 +56,7 @@ public abstract class AbstractInputOperation implements MenuOperation {
     /**
      * Functional interface for input validation
      */
-    interface InputValidator {
+    public interface InputValidator {
 
         /**
          * Determines whether the user input is valid

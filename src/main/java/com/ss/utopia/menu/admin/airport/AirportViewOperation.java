@@ -1,6 +1,7 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.airport;
 
 import com.ss.utopia.domain.Airport;
+import com.ss.utopia.menu.admin.AbstractViewOperation;
 
 class AirportViewOperation extends AbstractViewOperation<Airport> {
 

@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.airport;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +8,11 @@ import com.ss.utopia.console.Color;
 import com.ss.utopia.domain.Airport;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
-public class AirportOptionsMenu extends AbstractMenu {
+class AirportOptionsMenu extends AbstractMenu {
 
     private final List<Airport> airports;
     private final Airport airport;

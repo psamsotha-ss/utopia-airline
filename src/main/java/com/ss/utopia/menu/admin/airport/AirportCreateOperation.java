@@ -1,10 +1,11 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.airport;
 
 import java.io.IOException;
 import java.util.List;
 
 import com.ss.utopia.db.PersistenceException;
 import com.ss.utopia.domain.Airport;
+import com.ss.utopia.menu.admin.AbstractInputOperation;
 import com.ss.utopia.repository.AirportRepository;
 import com.ss.utopia.service.AirportService;
 

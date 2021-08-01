@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.employee;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,17 +8,18 @@ import com.ss.utopia.console.Color;
 import com.ss.utopia.domain.User;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 import com.ss.utopia.repository.UserRepository;
 import com.ss.utopia.service.UserService;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 import static java.util.Comparator.comparing;
 
-class AdminEmployeesMenu extends AbstractMenu {
+public class AdminEmployeesMenu extends AbstractMenu {
 
     private final List<User> employees;
 
-    AdminEmployeesMenu() {
+    public AdminEmployeesMenu() {
         UserService service = new UserService(new UserRepository());
         employees = service.getAllEmployees();
         employees.sort(comparing(User::getFamilyName));

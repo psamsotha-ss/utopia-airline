@@ -7,12 +7,16 @@ import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.airport.AdminAirportsMenu;
+import com.ss.utopia.menu.admin.employee.AdminEmployeesMenu;
+import com.ss.utopia.menu.admin.flight.AdminFlightsMenu;
+import com.ss.utopia.menu.admin.seat.AdminSeatsMenu;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
 public class AdminMenu extends AbstractMenu {
 
-    static final Color DEFAULT_COLOR = Color.BRIGHT_RED;
+    public static final Color DEFAULT_COLOR = Color.BRIGHT_RED;
 
     public AdminMenu(Console console) {
         super(console);

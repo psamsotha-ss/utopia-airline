@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.employee;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,15 +8,16 @@ import com.ss.utopia.console.Color;
 import com.ss.utopia.domain.User;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
-public class EmployeeOptionsMenu extends AbstractMenu {
+class EmployeeOptionsMenu extends AbstractMenu {
 
     private final User employee;
     private final List<User> employees;
 
-    public EmployeeOptionsMenu(User employee, List<User> employees) {
+    EmployeeOptionsMenu(User employee, List<User> employees) {
         this.employee = employee;
         this.employees = employees;
     }

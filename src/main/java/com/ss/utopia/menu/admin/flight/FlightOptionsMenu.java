@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.flight;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +9,7 @@ import com.ss.utopia.console.Console;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 
 import static com.ss.utopia.util.Formatters.formatFlight;
 import static com.ss.utopia.util.StringUtils.newLine;

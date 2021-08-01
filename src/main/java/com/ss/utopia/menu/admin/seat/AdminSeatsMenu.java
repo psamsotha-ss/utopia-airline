@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.seat;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,17 +8,18 @@ import com.ss.utopia.console.Color;
 import com.ss.utopia.domain.AirplaneType;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 import com.ss.utopia.repository.AirplaneRepository;
 import com.ss.utopia.repository.AirplaneTypeRepository;
 import com.ss.utopia.service.AirplaneService;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
-class AdminSeatsMenu extends AbstractMenu {
+public class AdminSeatsMenu extends AbstractMenu {
 
     private final List<AirplaneType> types;
 
-    AdminSeatsMenu() {
+    public AdminSeatsMenu() {
         AirplaneService service = new AirplaneService(new AirplaneRepository(), new AirplaneTypeRepository());
         types = service.getAllTypes();
     }

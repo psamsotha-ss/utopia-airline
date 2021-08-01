@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.flight;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,17 +9,18 @@ import com.ss.utopia.console.Console;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 import com.ss.utopia.repository.FlightRepository;
 import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.Formatters.formatFlight;
 import static com.ss.utopia.util.StringUtils.newLine;
 
-class AdminFlightsMenu extends AbstractMenu {
+public class AdminFlightsMenu extends AbstractMenu {
 
     private final List<Flight> flights;
 
-    AdminFlightsMenu(Console console) {
+    public AdminFlightsMenu(Console console) {
         super(console);
 
         FlightService flightService = new FlightService(new FlightRepository());

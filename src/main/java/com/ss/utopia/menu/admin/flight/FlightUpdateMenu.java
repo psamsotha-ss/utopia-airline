@@ -1,4 +1,4 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.flight;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -13,6 +13,7 @@ import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuOperation;
 import com.ss.utopia.menu.MenuSelection;
+import com.ss.utopia.menu.admin.AdminMenu;
 import com.ss.utopia.repository.FlightRepository;
 import com.ss.utopia.service.FlightService;
 
@@ -23,12 +24,12 @@ import static com.ss.utopia.util.Converters.getLocalTimeFromUtc;
 import static com.ss.utopia.util.Converters.getUtcTimeFromLocal;
 import static com.ss.utopia.util.StringUtils.newLine;
 
-class FlightUpdateMenu extends AbstractMenu {
+public class FlightUpdateMenu extends AbstractMenu {
 
     private final Flight flight;
     private final FlightService flightService = new FlightService(new FlightRepository());
 
-    FlightUpdateMenu(Console console, Flight flight) {
+    public FlightUpdateMenu(Console console, Flight flight) {
         super(console);
         this.flight = flight;
     }
@@ -60,7 +61,7 @@ class FlightUpdateMenu extends AbstractMenu {
     }
 
 
-    class FlightPriceUpdateOperation implements MenuOperation {
+    private class FlightPriceUpdateOperation implements MenuOperation {
 
         @Override
         public void runOperation() throws IOException {
@@ -89,7 +90,7 @@ class FlightUpdateMenu extends AbstractMenu {
         }
     }
 
-    class FlightTimeUpdateOperation implements MenuOperation {
+    private class FlightTimeUpdateOperation implements MenuOperation {
 
         @Override
         public void runOperation() throws IOException {

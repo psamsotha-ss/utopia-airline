@@ -1,12 +1,13 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu.admin.employee;
 
 import com.ss.utopia.domain.User;
+import com.ss.utopia.menu.admin.AbstractViewOperation;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 
-public class EmployeeViewOperation extends AbstractViewOperation<User> {
+class EmployeeViewOperation extends AbstractViewOperation<User> {
 
-    public EmployeeViewOperation(User employee) {
+    EmployeeViewOperation(User employee) {
         super(employee);
     }
 
