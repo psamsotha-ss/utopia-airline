@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ss.utopia.db.PersistenceException;
 import com.ss.utopia.domain.Airport;
 import com.ss.utopia.repository.AirportRepository;
 
@@ -26,6 +27,24 @@ public class AirportService {
         } catch (SQLException ex) {
             logger.error("Could not read airports: {}", ex.getMessage());
             return Collections.emptyList();
+        }
+    }
+
+    public void deleteAirport(Airport airport) throws PersistenceException  {
+        try {
+            repository.deleteAirport(airport.getIataId());
+        } catch (SQLException ex) {
+            logger.error("Could not delete airport: {}", ex.getMessage());
+            throw new PersistenceException("Could not delete airport", ex);
+        }
+    }
+
+    public void createAirport(Airport airport) throws PersistenceException {
+        try {
+            repository.createAirport(airport.getIataId(), airport.getCity());
+        } catch (SQLException ex) {
+            logger.error("Could not create airport: {}", ex.getMessage());
+            throw new PersistenceException("Could not create airport", ex);
         }
     }
 }

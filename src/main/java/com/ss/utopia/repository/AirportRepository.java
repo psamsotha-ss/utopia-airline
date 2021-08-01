@@ -14,6 +14,16 @@ public class AirportRepository extends AbstractBaseRepository<Airport> {
         return find(sql, null);
     }
 
+    public void deleteAirport(String iataId) throws SQLException {
+        final String sql = "DELETE FROM airport WHERE iata_id = ?";
+        delete(sql, new Object[] { iataId });
+    }
+
+    public void createAirport(String iataId, String cityState) throws SQLException {
+        final String sql = "INSERT INTO airport (iata_id, city) VALUES (?, ?)";
+        save(sql, new Object[] { iataId, cityState });
+    }
+
     @Override
     protected List<Airport> extractData(ResultSet rs) throws SQLException {
         List<Airport> airports = new ArrayList<>();

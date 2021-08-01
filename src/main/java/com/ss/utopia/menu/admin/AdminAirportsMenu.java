@@ -12,6 +12,7 @@ import com.ss.utopia.repository.AirportRepository;
 import com.ss.utopia.service.AirportService;
 
 import static com.ss.utopia.util.StringUtils.newLine;
+import static java.util.Comparator.comparing;
 
 public class AdminAirportsMenu extends AbstractMenu {
 
@@ -21,6 +22,7 @@ public class AdminAirportsMenu extends AbstractMenu {
         super();
         AirportService service = new AirportService(new AirportRepository());
         airports = service.getAllAirports();
+        airports.sort(comparing(Airport::getIataId));
     }
 
     @Override
@@ -28,9 +30,11 @@ public class AdminAirportsMenu extends AbstractMenu {
         StringBuilder sb = new StringBuilder("What airport would you like to manage:")
                 .append(newLine())
                 .append(newLine());
+        sb.append("  1) Create new Airport").append(newLine());
+
         for (int i = 0; i < airports.size(); i++) {
             Airport airport = airports.get(i);
-            String selection = "  " + (i+1) + ") " + airport.getIataId() + " - " + airport.getCity();
+            String selection = "  " + (i+2) + ") " + airport.getIataId() + " - " + airport.getCity();
             sb.append(selection).append(newLine());
         }
         return sb.toString();
@@ -49,9 +53,11 @@ public class AdminAirportsMenu extends AbstractMenu {
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
+        selections.put(1, new AirportCreateOperation(airports));
+
         for (int i = 0; i < airports.size(); i++) {
             Airport airport = airports.get(i);
-            selections.put(i + 1, new AirportOptionsMenu(airport, airports));
+            selections.put(i + 2, new AirportOptionsMenu(airport, airports));
         }
         return selections;
     }

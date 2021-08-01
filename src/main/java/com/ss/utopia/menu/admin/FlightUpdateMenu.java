@@ -1,6 +1,7 @@
 package com.ss.utopia.menu.admin;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
@@ -53,7 +54,7 @@ class FlightUpdateMenu extends AbstractMenu {
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
-        selections.put(1, new FlightTimUpdateOperation());
+        selections.put(1, new FlightTimeUpdateOperation());
         selections.put(2, new FlightPriceUpdateOperation());
         return selections;
     }
@@ -75,6 +76,7 @@ class FlightUpdateMenu extends AbstractMenu {
                 }
 
                 flightService.updateFlightField(flight, "seat_price", newPrice);
+                flight.setSeatPrice(BigDecimal.valueOf(newPrice));
                 printNoColor("Flight price updated.");
                 printNewLine();
                 break;
@@ -87,7 +89,7 @@ class FlightUpdateMenu extends AbstractMenu {
         }
     }
 
-    class FlightTimUpdateOperation implements MenuOperation {
+    class FlightTimeUpdateOperation implements MenuOperation {
 
         @Override
         public void runOperation() throws IOException {
@@ -106,6 +108,7 @@ class FlightUpdateMenu extends AbstractMenu {
                 }
                 newDepartTime = getUtcTimeFromLocal(newDepartTime, city);
                 flightService.updateFlightField(flight, "departure_time", formatDateTimeForDb(newDepartTime));
+                flight.setDepartureTime(newDepartTime);
                 printNoColor("Flight departure time updated.");
                 printNewLine();
                 break;

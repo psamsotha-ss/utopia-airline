@@ -9,7 +9,6 @@ import com.ss.utopia.domain.Airport;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
 
-import static com.ss.utopia.util.Formatters.formatFlight;
 import static com.ss.utopia.util.StringUtils.newLine;
 
 public class AirportOptionsMenu extends AbstractMenu {
@@ -45,6 +44,8 @@ public class AirportOptionsMenu extends AbstractMenu {
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new AirportViewOperation(airport));
+        selections.put(2, new AirportDeleteOperation(airport, airports));
+        selections.put(3, new AirportUpdateOperation());
         return selections;
     }
 }
