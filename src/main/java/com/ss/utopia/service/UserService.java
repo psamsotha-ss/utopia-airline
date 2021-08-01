@@ -38,4 +38,13 @@ public class UserService {
             throw new PersistenceException("Could not delete user", ex);
         }
     }
+
+    public void updateUserField(User user, String field, Object value) throws PersistenceException {
+        try {
+            repository.updateUserField(user.getId(), field, value);
+        } catch (SQLException ex) {
+            logger.error("Could not update user {} field {} with value '{}': {}",  user, field, value, ex.getMessage());
+            throw new PersistenceException("Could not update user field", ex);
+        }
+    }
 }

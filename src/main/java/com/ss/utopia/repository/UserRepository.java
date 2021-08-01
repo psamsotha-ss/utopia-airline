@@ -24,6 +24,11 @@ public class UserRepository extends AbstractBaseRepository<User> {
         delete(sql, new Object[] { userId });
     }
 
+    public void updateUserField(Integer userId, String field, Object value) throws SQLException {
+        final String sql = "UPDATE user SET " + field + " = ? WHERE id = ?";
+        save(sql, new Object[] { value, userId });
+    }
+
     @Override
     protected List<User> extractData(ResultSet rs) throws SQLException {
         List<User> users = new ArrayList<>();
