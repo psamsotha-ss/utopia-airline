@@ -37,6 +37,7 @@ public class AdminMenu extends AbstractMenu {
         selections.put(1, new AdminFlightsMenu(console));
         selections.put(2, new AdminSeatsMenu());
         selections.put(4, new AdminAirportsMenu());
+        selections.put(6, new AdminEmployeesMenu());
         return selections;
     }
 

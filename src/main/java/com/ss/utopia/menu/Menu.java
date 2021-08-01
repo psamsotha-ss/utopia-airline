@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Interface that represents a menu
  */
-public interface Menu {
+public interface Menu extends MenuSelection {
 
     /**
      * Run the menu

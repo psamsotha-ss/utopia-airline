@@ -12,7 +12,7 @@ import static com.ss.utopia.util.StringUtils.newLine;
 /**
  * Abstract base class for menus to extends from.
  */
-public abstract class AbstractMenu implements Menu, MenuSelection {
+public abstract class AbstractMenu implements Menu {
 
     private static final String DEFAULT_PROMPT_LINE = "Make a selection ('b' go back; 'q' to quit): ";
 
