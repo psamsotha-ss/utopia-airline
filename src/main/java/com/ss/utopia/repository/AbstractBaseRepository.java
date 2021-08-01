@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -33,7 +34,7 @@ public abstract class AbstractBaseRepository<T>  {
     }
 
     public Integer saveReturnPk(String sql, Object[] values) throws SQLException {
-        PreparedStatement ps = connection.prepareStatement(sql);
+        PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         setStatementValues(ps, values);
         ps.executeUpdate();
         ResultSet rs = ps.getGeneratedKeys();
@@ -45,6 +46,16 @@ public abstract class AbstractBaseRepository<T>  {
         setStatementValues(ps, values);
         ResultSet rs = ps.executeQuery();
         return extractData(rs);
+    }
+
+    public Object findSingleItem(String sql, Object[] values) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement(sql);
+        setStatementValues(ps, values);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getObject(1);
+        }
+        return null;
     }
 
     public void delete(String sql, Object[] values) throws SQLException {

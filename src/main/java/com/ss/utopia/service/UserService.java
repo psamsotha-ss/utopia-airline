@@ -47,4 +47,41 @@ public class UserService {
             throw new PersistenceException("Could not update user field", ex);
         }
     }
+
+    /**
+     * Create a new employee
+     * @param emp the employee {@code User} object
+     * @return the updated employee obj with the generated id
+     * @throws PersistenceException if the user could not be created or the Employee role could be be found
+     * @throws IllegalArgumentException if the user object contains an id
+     */
+    public User createNewEmployee(User emp) throws PersistenceException, IllegalArgumentException {
+        if (emp.getId() != null) {
+            throw new IllegalArgumentException("User cannot have an id.");
+        }
+        try {
+            Integer roleId = repository.findRoleIdByName("Employee");
+            if (roleId == null) {
+                logger.info("Employee role name does not exist.");
+                throw new PersistenceException("Employee role name does not exist.");
+            }
+            Integer userId = repository.createNewUserWithRole(roleId, emp.getGivenName(), emp.getFamilyName(),
+                    emp.getUsername(), emp.getPassword(), emp.getEmail(), emp.getPhone());
+            emp.setId(userId);
+        } catch (SQLException ex) {
+            logger.error("Could not create user: {}", ex.getMessage());
+            throw new PersistenceException("Employee could not be created", ex);
+        }
+        return emp;
+    }
+
+    public boolean checkPhoneNumberExists(String number) throws PersistenceException {
+        try {
+            String dbNumber = repository.findPhoneNumber(number);
+            if (dbNumber == null) return false;
+        } catch (SQLException ex) {
+            logger.error("Could not get phone number: {}", ex.getMessage());
+        }
+        return true;
+    }
 }

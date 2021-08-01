@@ -53,6 +53,8 @@ class AdminEmployeesMenu extends AbstractMenu {
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
+        selections.put(1, new EmployeeCreateOperation(employees));
+
         for (int i = 0; i < employees.size(); i++) {
             selections.put(i + 2, new EmployeeOptionsMenu(employees.get(i), employees));
         }

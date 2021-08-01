@@ -23,8 +23,8 @@ public class AirplaneTypeRepository extends AbstractBaseRepository<AirplaneType>
     protected List<AirplaneType> extractData(ResultSet rs) throws SQLException {
         List<AirplaneType> types = new ArrayList<>();
         while (rs.next()) {
-            int id = rs.getInt("id");
-            int capacity = rs.getInt("max_capacity");
+            Integer id = rs.getInt("id");
+            Integer capacity = rs.getInt("max_capacity");
             types.add(new AirplaneType(id, capacity));
         }
         return types;

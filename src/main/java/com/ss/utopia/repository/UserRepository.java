@@ -2,6 +2,7 @@ package com.ss.utopia.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,31 @@ public class UserRepository extends AbstractBaseRepository<User> {
     public void updateUserField(Integer userId, String field, Object value) throws SQLException {
         final String sql = "UPDATE user SET " + field + " = ? WHERE id = ?";
         save(sql, new Object[] { value, userId });
+    }
+
+    public Integer createNewUserWithRole(Integer roleId, String givenName, String familyName, String username,
+                                         String password, String email, String phone) throws SQLException {
+        final String sql = "INSERT INTO user (role_id, given_name, family_name, username, password, email, phone) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        return saveReturnPk(sql, new Object[] { roleId, givenName, familyName, username, password, email, phone });
+    }
+
+    public String findPhoneNumber(String phoneNumber) throws SQLException {
+        final String sql = "SELECT phone FROM user WHERE phone = ?";
+        Object result = findSingleItem(sql, new Object[] { phoneNumber });
+        if (result != null) {
+            return (String) result;
+        }
+        return null;
+    }
+
+    public Integer findRoleIdByName(String roleName) throws SQLException {
+        final String sql = "SELECT id FROM user_role WHERE name = ?";
+        Object result = findSingleItem(sql, new Object[] { roleName });
+        if (result != null) {
+            return (result instanceof Long) ? Math.toIntExact((Long) result): (Integer) result;
+        }
+        return null;
     }
 
     @Override
