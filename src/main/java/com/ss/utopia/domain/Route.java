@@ -2,7 +2,7 @@ package com.ss.utopia.domain;
 
 public class Route {
 
-    private int id;
+    private Integer id;
     private Airport origin;
     private Airport destination;
 
@@ -13,17 +13,17 @@ public class Route {
         this.destination = destination;
     }
 
-    public Route(int id, Airport origin, Airport destination) {
+    public Route(Integer id, Airport origin, Airport destination) {
         this.id = id;
         this.origin = origin;
         this.destination = destination;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,7 +48,7 @@ public class Route {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Route route = (Route) o;
-        return id == route.id;
+        return id.equals(route.id);
     }
 
     @Override

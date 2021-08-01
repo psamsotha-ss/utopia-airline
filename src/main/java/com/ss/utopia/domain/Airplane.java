@@ -2,7 +2,7 @@ package com.ss.utopia.domain;
 
 public class Airplane {
 
-    private int id;
+    private Integer id;
     private AirplaneType type;
 
     public Airplane() {}
@@ -11,16 +11,16 @@ public class Airplane {
         this.type = type;
     }
 
-    public Airplane(int id, AirplaneType type) {
+    public Airplane(Integer id, AirplaneType type) {
         this.id = id;
         this.type = type;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,7 +37,7 @@ public class Airplane {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Airplane airplane = (Airplane) o;
-        return id == airplane.id;
+        return id.equals(airplane.id);
     }
 
     @Override

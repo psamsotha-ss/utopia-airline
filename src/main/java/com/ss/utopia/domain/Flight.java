@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 
 public class Flight {
 
-    private int id;
+    private Integer id;
     private Route route;
     private Airplane airplane;
     private LocalDateTime departureTime;
-    private int reservedSeats;
+    private Integer reservedSeats;
     private BigDecimal seatPrice;
 
     public Flight() {}
@@ -20,18 +20,18 @@ public class Flight {
         this.departureTime = departureTime;
     }
 
-    public Flight(int id, Route route, Airplane airplane, LocalDateTime departureTime) {
+    public Flight(Integer id, Route route, Airplane airplane, LocalDateTime departureTime) {
         this.id = id;
         this.route = route;
         this.airplane = airplane;
         this.departureTime = departureTime;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -80,7 +80,7 @@ public class Flight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
-        return id == flight.id;
+        return id.equals(flight.id);
     }
 
     @Override

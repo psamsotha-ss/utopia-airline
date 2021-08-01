@@ -2,7 +2,7 @@ package com.ss.utopia.domain;
 
 public class Booking {
 
-    private int id;
+    private Integer id;
     private boolean isActive;
     private String confirmationCode;
 
@@ -13,17 +13,17 @@ public class Booking {
         this.confirmationCode = confirmationCode;
     }
 
-    public Booking(int id, boolean isActive, String confirmationCode) {
+    public Booking(Integer id, boolean isActive, String confirmationCode) {
         this.id = id;
         this.isActive = isActive;
         this.confirmationCode = confirmationCode;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,7 +48,7 @@ public class Booking {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return id == booking.id;
+        return id.equals(booking.id);
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.ss.utopia.domain;
 
 public class UserRole {
 
-    private int id;
+    private Integer id;
     private String name;
 
     public UserRole() {}
@@ -11,16 +11,16 @@ public class UserRole {
         this.name = name;
     }
 
-    public UserRole(int id, String name) {
+    public UserRole(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,7 +37,7 @@ public class UserRole {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRole userRole = (UserRole) o;
-        return id == userRole.id;
+        return id.equals(userRole.id);
     }
 
     @Override

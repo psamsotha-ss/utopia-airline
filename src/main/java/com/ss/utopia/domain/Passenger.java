@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Passenger {
 
-    private int id;
+    private Integer id;
     private Booking booking;
     private String givenName;
     private String familyName;
@@ -23,7 +23,7 @@ public class Passenger {
         this.address = address;
     }
 
-    public Passenger(int id, Booking booking, String givenName, String familyName, LocalDate dateOfBirth, String gender, String address) {
+    public Passenger(Integer id, Booking booking, String givenName, String familyName, LocalDate dateOfBirth, String gender, String address) {
         this.id = id;
         this.booking = booking;
         this.givenName = givenName;
@@ -33,11 +33,11 @@ public class Passenger {
         this.address = address;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -94,7 +94,7 @@ public class Passenger {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Passenger passenger = (Passenger) o;
-        return id == passenger.id;
+        return id.equals(passenger.id);
     }
 
     @Override

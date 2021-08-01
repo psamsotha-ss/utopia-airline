@@ -2,25 +2,25 @@ package com.ss.utopia.domain;
 
 public class AirplaneType {
 
-    private int id;
-    private int maxCapacity;
+    private Integer id;
+    private Integer maxCapacity;
 
     public AirplaneType() {}
 
-    public AirplaneType(int maxCapacity) {
+    public AirplaneType(Integer maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
 
-    public AirplaneType(int id, int maxCapacity) {
+    public AirplaneType(int id, Integer maxCapacity) {
         this.id = id;
         this.maxCapacity = maxCapacity;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,7 +37,7 @@ public class AirplaneType {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AirplaneType that = (AirplaneType) o;
-        return id == that.id;
+        return id.equals(that.id);
     }
 
     @Override
