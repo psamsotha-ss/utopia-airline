@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ss.utopia.console.Color;
-import com.ss.utopia.console.Console;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
 import com.ss.utopia.menu.admin.airport.AdminAirportsMenu;
@@ -19,10 +18,6 @@ import static com.ss.utopia.util.StringUtils.newLine;
 public class AdminMenu extends AbstractMenu {
 
     public static final Color DEFAULT_COLOR = Color.BRIGHT_RED;
-
-    public AdminMenu(Console console) {
-        super(console);
-    }
 
     @Override
     protected String getInitialPrompt() {
@@ -40,7 +35,7 @@ public class AdminMenu extends AbstractMenu {
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
-        selections.put(1, new AdminFlightsMenu(console));
+        selections.put(1, new AdminFlightsMenu());
         selections.put(2, new AdminSeatsMenu());
         selections.put(3, new AdminPassengerMenu());
         selections.put(4, new AdminAirportsMenu());

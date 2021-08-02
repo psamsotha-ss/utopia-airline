@@ -76,9 +76,5 @@ public abstract class AbstractBaseRepository<T>  {
         }
     }
 
-    public int booleanToInt(boolean isTrue) {
-        return isTrue ? 1 : 0;
-    }
-
     protected abstract List<T> extractData(ResultSet rs) throws SQLException;
 }

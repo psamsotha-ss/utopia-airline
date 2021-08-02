@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.ss.utopia.console.Color;
-import com.ss.utopia.console.Console;
 import com.ss.utopia.domain.User;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
@@ -18,10 +17,6 @@ public class TravelerMenu extends AbstractMenu {
 
     public static final Color DEFAULT_COLOR = Color.BRIGHT_GREEN;
     private User traveler;
-
-    public TravelerMenu(Console console) {
-        super(console);
-    }
 
     @Override
     public void run() throws IOException {

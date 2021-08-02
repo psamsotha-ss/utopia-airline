@@ -40,6 +40,16 @@ public class BookingService {
         this.connection = connection;
     }
 
+    /**
+     * Create a new booking.
+     * @param traveler the user to book the flight for
+     * @param flight the flight to book
+     * @param dob the date of birth of the user
+     * @param gender the gender of the user
+     * @param address the address of the user
+     * @return the new {@code Booking} object
+     * @throws PersistenceException if a persistence error occurs while creating the booking
+     */
     public Booking createBooking(User traveler, Flight flight, String dob, String gender, String address)
             throws PersistenceException {
         return runInTransaction(() -> {
@@ -60,10 +70,9 @@ public class BookingService {
     }
 
     private Booking runInTransaction(PersistenceOperation<Booking> op) throws PersistenceException {
-        Booking booking;
         try {
             connection.setAutoCommit(Boolean.FALSE);
-            booking = op.run();
+            Booking booking = op.run();
             connection.commit();
             return booking;
         } catch (SQLException ex) {
@@ -85,6 +94,10 @@ public class BookingService {
         }
     }
 
+    /**
+     * Get new instance of {@code BookingService}
+     * @return the new booking service
+     */
     public static BookingService newInstance() {
         Connection connection;
         try {

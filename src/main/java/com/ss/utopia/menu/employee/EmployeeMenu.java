@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.ss.utopia.console.Color;
-import com.ss.utopia.console.Console;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
@@ -21,8 +20,7 @@ public class EmployeeMenu extends AbstractMenu {
 
     private final List<Flight> flights;
 
-    public EmployeeMenu(Console console) {
-        super(console);
+    public EmployeeMenu() {
         FlightService service = new FlightService(new FlightRepository());
         flights = service.getAllFlights();
     }

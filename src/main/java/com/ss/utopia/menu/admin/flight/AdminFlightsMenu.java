@@ -20,8 +20,7 @@ public class AdminFlightsMenu extends AbstractMenu {
 
     private final List<Flight> flights;
 
-    public AdminFlightsMenu(Console console) {
-        super(console);
+    public AdminFlightsMenu() {
 
         FlightService flightService = new FlightService(new FlightRepository());
         flights = flightService.getAllFlights();

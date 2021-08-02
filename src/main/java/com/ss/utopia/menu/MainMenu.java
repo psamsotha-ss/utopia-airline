@@ -32,9 +32,9 @@ public class MainMenu extends AbstractMenu {
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
-        selections.put(1, new EmployeeMenu(console));
-        selections.put(2, new AdminMenu(console));
-        selections.put(3, new TravelerMenu(console));
+        selections.put(1, new EmployeeMenu());
+        selections.put(2, new AdminMenu());
+        selections.put(3, new TravelerMenu());
         return selections;
     }
 
