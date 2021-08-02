@@ -10,6 +10,7 @@ import com.ss.utopia.menu.MenuSelection;
 import com.ss.utopia.menu.admin.airport.AdminAirportsMenu;
 import com.ss.utopia.menu.admin.employee.AdminEmployeesMenu;
 import com.ss.utopia.menu.admin.flight.AdminFlightsMenu;
+import com.ss.utopia.menu.admin.passenger.AdminPassengerMenu;
 import com.ss.utopia.menu.admin.seat.AdminSeatsMenu;
 import com.ss.utopia.menu.admin.traveler.AdminTravelerMenu;
 
@@ -41,6 +42,7 @@ public class AdminMenu extends AbstractMenu {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new AdminFlightsMenu(console));
         selections.put(2, new AdminSeatsMenu());
+        selections.put(3, new AdminPassengerMenu());
         selections.put(4, new AdminAirportsMenu());
         selections.put(5, new AdminTravelerMenu());
         selections.put(6, new AdminEmployeesMenu());
