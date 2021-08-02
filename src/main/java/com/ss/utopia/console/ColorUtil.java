@@ -1,7 +1,5 @@
 package com.ss.utopia.console;
 
-import com.diogonunes.jcolor.Attribute;
-
 import static com.diogonunes.jcolor.Ansi.colorize;
 import static com.diogonunes.jcolor.Attribute.BLUE_TEXT;
 import static com.diogonunes.jcolor.Attribute.BRIGHT_BLUE_TEXT;
