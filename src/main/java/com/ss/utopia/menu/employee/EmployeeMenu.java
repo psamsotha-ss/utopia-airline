@@ -2,6 +2,7 @@ package com.ss.utopia.menu.employee;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,18 +20,25 @@ import static com.ss.utopia.util.StringUtils.newLine;
 
 public class EmployeeMenu extends AbstractMenu {
 
-    private final FlightService service;
+    private final List<Flight> flights;
 
     public EmployeeMenu(Console console) {
         super(console);
-        this.service = new FlightService(new FlightRepository());
+        FlightService service = new FlightService(new FlightRepository());
+        flights = service.getAllFlights();
     }
 
     @Override
     protected String getInitialPrompt() {
-        return "Welcome Employee" + newLine()
-                + newLine()
-                + "  1) Enter Flights You Manage" + newLine();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Which flight would you like to manage:").append(newLine())
+                .append(newLine());
+
+        for (int i = 0; i < flights.size(); i++) {
+            String line = "  " + (i+1) + ") " + formatFlight(flights.get(i));
+            sb.append(line).append(newLine());
+        }
+        return sb.toString();
     }
 
     @Override
@@ -43,22 +51,12 @@ public class EmployeeMenu extends AbstractMenu {
         return "Returning to main menu.";
     }
 
-    private void runFlightManager() throws IOException {
-        printNewLine();
-        print("Which flight would you like to manage:");
-        printNewLine();
-        List<Flight> flights = service.getAllFlights();
-        for (int i = 0; i < flights.size(); i++) {
-            Flight flight = flights.get(i);
-            print("  " + (i + 1) + ") " + formatFlight(flight));
-        }
-        printNewLine();
-        String input = prompt("Enter your selection: ");
-        printNoColor("You selected: " + input);
-    }
-
     @Override
     public Map<Integer, MenuSelection> getMenuSelections() {
-        return Collections.emptyMap();
+        Map<Integer ,MenuSelection> selections = new HashMap<>();
+        for (int i = 0; i < flights.size(); i++) {
+            selections.put(i + 1, new FlightOptionsMenu(flights.get(i)));
+        }
+        return selections;
     }
 }

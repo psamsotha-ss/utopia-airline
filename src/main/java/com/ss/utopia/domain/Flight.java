@@ -67,6 +67,22 @@ public class Flight {
         this.reservedSeats = reservedSeats;
     }
 
+    public void incrementReservedSeats(int seats) throws IllegalArgumentException {
+        if (catAddSeats(seats)) {
+            setReservedSeats(getReservedSeats() + seats);
+        } else {
+            throw new IllegalArgumentException("Not enough available seats.");
+        }
+    }
+
+    public int getSeatsAvailable() {
+        return getAirplane().getType().getMaxCapacity() - getReservedSeats();
+    }
+
+    public boolean catAddSeats(int seats) {
+        return getSeatsAvailable() >= seats;
+    }
+
     public BigDecimal getSeatPrice() {
         return seatPrice;
     }

@@ -6,20 +6,43 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ss.utopia.domain.Airplane;
+import com.ss.utopia.domain.AirplaneType;
 import com.ss.utopia.domain.Airport;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.domain.Route;
 import com.ss.utopia.util.Converters;
 
+import static com.ss.utopia.util.Converters.dateFromString;
+
 public class FlightRepository extends AbstractBaseRepository<Flight> {
 
     public List<Flight> findAllFlights() throws SQLException {
-        final String sql = "SELECT f.id, f.departure_time, f.reserved_seats, f.seat_price, r.id, o.iata_id, o.city, d.iata_id, d.city " +
+//        final String sql = "SELECT f.id, f.departure_time, f.reserved_seats, f.seat_price, r.id, o.iata_id, o.city, d.iata_id, d.city " +
+//                "FROM flight f " +
+//                "JOIN route r ON f.route_id = r.id " +
+//                "JOIN airport o ON r.origin_id = o.iata_id " +
+//                "JOIN airport d ON r.destination_id = d.iata_id " +
+//                "ORDER BY r.id";
+        final String sql = "SELECT f.id AS flight_id, " +
+                "       f.departure_time, " +
+                "       f.reserved_seats, " +
+                "       f.seat_price, " +
+                "       r.id AS route_id, " +
+                "       o.iata_id AS origin_id, " +
+                "       o.city AS origin_city, " +
+                "       d.iata_id AS destination_id, " +
+                "       d.city AS destination_city, " +
+                "       f.airplane_id, " +
+                "       type.id AS type_id, " +
+                "       type.max_capacity " +
                 "FROM flight f " +
+                "JOIN airplane a ON a.id = f.airplane_id " +
+                "JOIN airplane_type type ON a.type_id = type.id " +
                 "JOIN route r ON f.route_id = r.id " +
                 "JOIN airport o ON r.origin_id = o.iata_id " +
                 "JOIN airport d ON r.destination_id = d.iata_id " +
-                "ORDER BY r.id";
+                "ORDER BY f.id";
         return find(sql, null);
     }
 
@@ -37,28 +60,35 @@ public class FlightRepository extends AbstractBaseRepository<Flight> {
     protected List<Flight> extractData(ResultSet rs) throws SQLException {
         List<Flight> flights = new ArrayList<>();
         while (rs.next()) {
-            String originId = rs.getString(6);
-            String originCity = rs.getString(7);
-            Airport origin = new Airport(originId, originCity);
-
-            String destId = rs.getString(8);
-            String destCity = rs.getString(9);
-            Airport dest = new Airport(destId, destCity);
-
-            int routeId = rs.getInt(5);
-            Route route = new Route(routeId, origin, dest);
-
-            int flightId = rs.getInt(1);
-            String departTime = rs.getString(2);
-            int resSeats = rs.getInt(3);
-            float price = rs.getFloat(4);
-
             Flight flight = new Flight();
-            flight.setId(flightId);
+            flight.setId(rs.getInt("flight_id"));
+            flight.setDepartureTime(dateFromString(rs.getString("departure_time")));
+            flight.setReservedSeats(rs.getInt("reserved_seats"));
+            flight.setSeatPrice(BigDecimal.valueOf(rs.getFloat("seat_price")));
+
+            Route route = new Route();
+            route.setId(rs.getInt("route_id"));
+
+            Airport origin = new Airport();
+            origin.setIataId(rs.getString("origin_id"));
+            origin.setCity(rs.getString("origin_city"));
+
+            Airport dest = new Airport();
+            dest.setIataId(rs.getString("destination_id"));
+            dest.setCity(rs.getString("destination_city"));
+
+            Airplane airplane = new Airplane();
+            airplane.setId(rs.getInt("airplane_id"));
+
+            AirplaneType type = new AirplaneType();
+            type.setId(rs.getInt("type_id"));
+            type.setMaxCapacity(rs.getInt("max_capacity"));
+
+            airplane.setType(type);
+            route.setOrigin(origin);
+            route.setDestination(dest);
             flight.setRoute(route);
-            flight.setReservedSeats(resSeats);
-            flight.setSeatPrice(BigDecimal.valueOf(price));
-            flight.setDepartureTime(Converters.dateFromString(departTime));
+            flight.setAirplane(airplane);
 
             flights.add(flight);
         }
