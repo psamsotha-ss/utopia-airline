@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 import com.ss.utopia.domain.Airport;
 import com.ss.utopia.domain.Flight;
-import com.ss.utopia.menu.admin.AbstractViewOperation;
+import com.ss.utopia.menu.AbstractViewOperation;
 
 import static com.ss.utopia.util.Converters.getLocalTimeFromUtc;
 import static com.ss.utopia.util.StringUtils.newLine;

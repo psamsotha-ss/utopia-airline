@@ -12,8 +12,7 @@ import com.ss.utopia.db.PersistenceException;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
-import com.ss.utopia.menu.admin.AbstractInputOperation;
-import com.ss.utopia.menu.admin.AdminMenu;
+import com.ss.utopia.menu.AbstractInputOperation;
 import com.ss.utopia.repository.FlightRepository;
 import com.ss.utopia.service.FlightService;
 
@@ -22,7 +21,7 @@ import static com.ss.utopia.util.Converters.dateFromString;
 import static com.ss.utopia.util.Converters.formatDateTimeForDb;
 import static com.ss.utopia.util.StringUtils.newLine;
 
-public class FlightUpdateMenu extends AbstractMenu {
+class FlightUpdateMenu extends AbstractMenu {
 
     private final Flight flight;
 
@@ -40,7 +39,7 @@ public class FlightUpdateMenu extends AbstractMenu {
 
     @Override
     protected Color getColor() {
-        return AdminMenu.DEFAULT_COLOR;
+        return EmployeeMenu.DEFAULT_COLOR;
     }
 
     @Override

@@ -31,7 +31,7 @@ class FlightOptionsMenu extends AbstractMenu {
 
     @Override
     protected Color getColor() {
-        return AdminMenu.DEFAULT_COLOR;
+        return EmployeeMenu.DEFAULT_COLOR;
     }
 
     @Override

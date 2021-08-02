@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.ss.utopia.domain.User;
-import com.ss.utopia.menu.admin.AbstractInputOperation;
+import com.ss.utopia.menu.AbstractInputOperation;
 import com.ss.utopia.repository.UserRepository;
 import com.ss.utopia.service.UserService;
 

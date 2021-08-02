@@ -1,10 +1,9 @@
-package com.ss.utopia.menu.admin;
+package com.ss.utopia.menu;
 
 import java.io.IOException;
 
 import com.ss.utopia.console.Console;
 import com.ss.utopia.console.Consoles;
-import com.ss.utopia.menu.MenuOperation;
 
 public abstract class AbstractInputOperation implements MenuOperation {
 

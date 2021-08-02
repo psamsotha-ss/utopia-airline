@@ -1,14 +1,11 @@
 package com.ss.utopia.menu.employee;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.ss.utopia.console.Color;
 import com.ss.utopia.console.Console;
-import com.ss.utopia.domain.Airport;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
@@ -19,6 +16,8 @@ import static com.ss.utopia.util.Formatters.formatFlight;
 import static com.ss.utopia.util.StringUtils.newLine;
 
 public class EmployeeMenu extends AbstractMenu {
+
+    public static final Color DEFAULT_COLOR = Color.BRIGHT_BLUE;
 
     private final List<Flight> flights;
 
@@ -43,7 +42,7 @@ public class EmployeeMenu extends AbstractMenu {
 
     @Override
     protected Color getColor() {
-        return Color.BRIGHT_BLUE;
+        return DEFAULT_COLOR;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.ss.utopia.menu.admin.airport;
 
 import java.io.IOException;
 
-import com.ss.utopia.menu.admin.AbstractInputOperation;
+import com.ss.utopia.menu.AbstractInputOperation;
 
 class AirportUpdateOperation extends AbstractInputOperation {
 

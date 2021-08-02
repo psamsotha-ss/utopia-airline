@@ -11,19 +11,12 @@ import com.ss.utopia.domain.AirplaneType;
 import com.ss.utopia.domain.Airport;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.domain.Route;
-import com.ss.utopia.util.Converters;
 
 import static com.ss.utopia.util.Converters.dateFromString;
 
 public class FlightRepository extends AbstractBaseRepository<Flight> {
 
     public List<Flight> findAllFlights() throws SQLException {
-//        final String sql = "SELECT f.id, f.departure_time, f.reserved_seats, f.seat_price, r.id, o.iata_id, o.city, d.iata_id, d.city " +
-//                "FROM flight f " +
-//                "JOIN route r ON f.route_id = r.id " +
-//                "JOIN airport o ON r.origin_id = o.iata_id " +
-//                "JOIN airport d ON r.destination_id = d.iata_id " +
-//                "ORDER BY r.id";
         final String sql = "SELECT f.id AS flight_id, " +
                 "       f.departure_time, " +
                 "       f.reserved_seats, " +

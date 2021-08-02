@@ -1,7 +1,7 @@
 package com.ss.utopia.menu.admin.employee;
 
 import com.ss.utopia.domain.User;
-import com.ss.utopia.menu.admin.AbstractViewOperation;
+import com.ss.utopia.menu.AbstractViewOperation;
 
 import static com.ss.utopia.util.StringUtils.newLine;
 

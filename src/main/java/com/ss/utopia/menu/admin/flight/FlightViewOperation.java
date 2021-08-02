@@ -1,7 +1,7 @@
 package com.ss.utopia.menu.admin.flight;
 
 import com.ss.utopia.domain.Flight;
-import com.ss.utopia.menu.admin.AbstractViewOperation;
+import com.ss.utopia.menu.AbstractViewOperation;
 
 class FlightViewOperation extends AbstractViewOperation<Flight> {
 

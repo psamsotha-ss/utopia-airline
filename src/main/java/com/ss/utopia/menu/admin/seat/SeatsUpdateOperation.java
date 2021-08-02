@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.ss.utopia.db.PersistenceException;
 import com.ss.utopia.domain.AirplaneType;
-import com.ss.utopia.menu.admin.AbstractInputOperation;
+import com.ss.utopia.menu.AbstractInputOperation;
 import com.ss.utopia.repository.AirplaneRepository;
 import com.ss.utopia.repository.AirplaneTypeRepository;
 import com.ss.utopia.service.AirplaneService;
