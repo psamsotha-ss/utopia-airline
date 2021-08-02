@@ -19,7 +19,7 @@ class BufferedReaderConsole implements Console {
     @Override
     public String prompt(String message) throws IOException {
         System.out.print(message);
-        String input = reader.readLine();
+        String input = reader.readLine().trim();
         return input.trim();
     }
 

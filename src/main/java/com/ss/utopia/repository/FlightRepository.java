@@ -1,6 +1,7 @@
 package com.ss.utopia.repository;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +16,12 @@ import com.ss.utopia.domain.Route;
 import static com.ss.utopia.util.Converters.dateFromString;
 
 public class FlightRepository extends AbstractBaseRepository<Flight> {
+
+    public FlightRepository() {}
+
+    public FlightRepository(Connection connection) {
+        super(connection);
+    }
 
     public List<Flight> findAllFlights() throws SQLException {
         final String sql = "SELECT f.id AS flight_id, " +

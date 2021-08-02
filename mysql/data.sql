@@ -105,3 +105,11 @@ INSERT INTO user (id, role_id, given_name, family_name, username, email, passwor
     VALUES (2, 1, 'Klay', 'Thompson', 'klay11', 'klay.thompson@utopia.com', 'secret', '510-555-1235');
 INSERT INTO user (id, role_id, given_name, family_name, username, email, password, phone)
     VALUES (3, 1, 'Draymond', 'Green', 'dray30', 'draymond.green@utopia.com', 'secret', '510-555-1236');
+INSERT INTO user (id, role_id, given_name, family_name, username, email, password, phone)
+    VALUES (4, 3, 'Kobe', 'Bryant', 'blackmamba', 'kobe.bryant@lakers.com', 'secret', '510-555-1237');
+INSERT INTO user (id, role_id, given_name, family_name, username, email, password, phone)
+    VALUES (5, 3, 'Michael', 'Jordan', 'jordan23', 'michael.jordan@bulls.com', 'secret', '510-555-1238');
+INSERT INTO user (id, role_id, given_name, family_name, username, email, password, phone)
+    VALUES (6, 3, 'Lebron', 'James', 'kingjames', 'lebron.james@cavs.com', 'secret', '510-555-1239');
+INSERT INTO user (id, role_id, given_name, family_name, username, email, password, phone)
+    VALUES (7, 2, 'Paul', 'Samsotha', 'psamsotha', 'paul.samsotha@smoothstack.com', 'secret', '510-555-1240');

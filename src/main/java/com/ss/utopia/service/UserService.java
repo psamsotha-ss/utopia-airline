@@ -119,6 +119,21 @@ public class UserService {
     }
 
     /**
+     * Get traveler by id
+     * @param id the id of the user
+     * @return the user if found, or null
+     * @throws PersistenceException is there is a problem finding the user
+     */
+    public User getTraveler(Integer id) {
+        try {
+            return repository.findUserByIdAndRole(id, "Traveler");
+        } catch (SQLException ex) {
+            logger.error("Could not get user: {}", ex.getMessage());
+            throw new PersistenceException("Could not get user", ex);
+        }
+    }
+
+    /**
      * Check if a phone number already exists. There cannot be duplicate phone numbers
      * @param number the phone number to check
      * @return true if the number exists, false if not

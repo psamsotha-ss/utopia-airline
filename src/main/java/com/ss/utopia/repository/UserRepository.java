@@ -1,8 +1,8 @@
 package com.ss.utopia.repository;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLWarning;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,12 @@ import com.ss.utopia.domain.User;
 import com.ss.utopia.domain.UserRole;
 
 public class UserRepository extends AbstractBaseRepository<User> {
+
+    public UserRepository() {}
+
+    public UserRepository(Connection connection) {
+        super(connection);
+    }
 
     public List<User> findUsersByRoleName(String roleName) throws SQLException {
         final String sql = "SELECT u.id, u.role_id, u.given_name, u.family_name, u.username, " +
@@ -53,6 +59,16 @@ public class UserRepository extends AbstractBaseRepository<User> {
             return (result instanceof Long) ? Math.toIntExact((Long) result): (Integer) result;
         }
         return null;
+    }
+
+    public User findUserByIdAndRole(Integer id, String roleName) throws SQLException {
+        final String sql = "SELECT u.id, u.given_name, u.family_name, u.username, " +
+                "u.password, u.email, u.phone, r.name AS role_name, u.role_id " +
+                "FROM user u " +
+                "JOIN user_role r ON u.role_id = r.id " +
+                "WHERE u.id = ? AND r.name = ?";
+        List<User> users = find(sql, new Object[] { id, roleName });
+        return users.isEmpty() ? null : users.get(0);
     }
 
     @Override

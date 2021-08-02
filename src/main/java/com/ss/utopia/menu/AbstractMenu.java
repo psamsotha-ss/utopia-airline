@@ -14,7 +14,8 @@ import static com.ss.utopia.util.StringUtils.newLine;
  */
 public abstract class AbstractMenu implements Menu {
 
-    private static final String DEFAULT_PROMPT_LINE = "Make a selection ('b' go back; 'q' to quit): ";
+    private static final String QUIT_PROMPT = " ('b' go back; 'q' to quit): ";
+    private static final String DEFAULT_PROMPT = "Make a selection";
 
     protected final Console console;
 
@@ -31,7 +32,7 @@ public abstract class AbstractMenu implements Menu {
         while (true) {
             String initialPrompt = getInitialPrompt()
                     + newLine()
-                    + getLastPromptLine();
+                    + getLastPromptLine() + QUIT_PROMPT;
 
             String input = prompt(initialPrompt).trim();
             if ("q".equals(input)) {
@@ -77,7 +78,7 @@ public abstract class AbstractMenu implements Menu {
      * @return the prompt string
      */
     protected String getLastPromptLine() {
-        return DEFAULT_PROMPT_LINE;
+        return DEFAULT_PROMPT;
     }
 
     /**

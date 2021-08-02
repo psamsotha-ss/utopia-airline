@@ -27,6 +27,10 @@ public abstract class AbstractBaseRepository<T>  {
         }
     }
 
+    protected AbstractBaseRepository(Connection connection) {
+        this.connection = connection;
+    }
+
     public void save(String sql, Object[] values) throws SQLException {
         PreparedStatement ps = connection.prepareStatement(sql);
         setStatementValues(ps, values);
@@ -70,6 +74,10 @@ public abstract class AbstractBaseRepository<T>  {
                 ps.setObject(i + 1, values[i]);
             }
         }
+    }
+
+    public int booleanToInt(boolean isTrue) {
+        return isTrue ? 1 : 0;
     }
 
     protected abstract List<T> extractData(ResultSet rs) throws SQLException;
