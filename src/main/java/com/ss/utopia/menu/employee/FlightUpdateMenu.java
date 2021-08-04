@@ -17,8 +17,8 @@ import com.ss.utopia.repository.FlightRepository;
 import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.Converters.DB_DATE_TIME_FORMAT;
-import static com.ss.utopia.util.Converters.dateFromString;
-import static com.ss.utopia.util.Converters.formatDateTimeForDb;
+import static com.ss.utopia.util.Converters.dateTimeFromString;
+import static com.ss.utopia.util.Formatters.formatDateTimeForDb;
 import static com.ss.utopia.util.StringUtils.newLine;
 
 class FlightUpdateMenu extends AbstractMenu {
@@ -91,13 +91,13 @@ class FlightUpdateMenu extends AbstractMenu {
         public void runOperation() throws IOException {
             String timeInput = getInput("What is the new departure time: ", (input) -> {
                 try {
-                    dateFromString(input);
+                    dateTimeFromString(input);
                     return true;
                 } catch (DateTimeParseException ex) {
                     return false;
                 }
             }, "Must be in the format " + DB_DATE_TIME_FORMAT);
-            LocalDateTime newDepartTime = dateFromString(timeInput);
+            LocalDateTime newDepartTime = dateTimeFromString(timeInput);
             try {
                 FlightService service = new FlightService(new FlightRepository());
                 service.updateFlightField(flight, "departure_time", formatDateTimeForDb(newDepartTime));

@@ -1,5 +1,6 @@
 package com.ss.utopia.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -14,20 +15,26 @@ import java.util.Map;
 public class Converters {
 
     public static final String DB_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DB_DATE_FORMAT = "yyyy-MM-dd";
 
     /**
-     * Convert a date string into a {@code LocalDateTime}, using the MySQL DATETIME format
+     * Convert a date-time string into a {@code LocalDateTime}, using the MySQL DATETIME format
      * yyyy-MM-dd HH:mm:ss
      *
-     * @param dateString the date-time string
+     * @param dateTimeString the date-time string
      * @return the {@code LocalDateTime}
      */
-    public static LocalDateTime dateFromString(String dateString) {
-        return LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern(DB_DATE_TIME_FORMAT));
+    public static LocalDateTime dateTimeFromString(String dateTimeString) {
+        return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern(DB_DATE_TIME_FORMAT));
     }
 
-    public static String formatDateTimeForDb(LocalDateTime dateTime) {
-        return DateTimeFormatter.ofPattern(DB_DATE_TIME_FORMAT).format(dateTime);
+    /**
+     * Convert date string into a {@code LocalDate}, using the MySQL DATE format
+     * @param dateString the date string
+     * @return the {@code LocalDate}
+     */
+    public static LocalDate dateFromString(String dateString) {
+        return LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DB_DATE_FORMAT));
     }
 
     /**

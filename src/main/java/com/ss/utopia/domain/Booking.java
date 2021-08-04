@@ -5,6 +5,7 @@ public class Booking {
     private Integer id;
     private boolean isActive;
     private String confirmationCode;
+    private FlightBooking flightBooking;
 
     public Booking() {}
 
@@ -41,6 +42,14 @@ public class Booking {
 
     public void setConfirmationCode(String confirmationCode) {
         this.confirmationCode = confirmationCode;
+    }
+
+    public FlightBooking getFlightBooking() {
+        return flightBooking;
+    }
+
+    public void setFlightBooking(FlightBooking flightBooking) {
+        this.flightBooking = flightBooking;
     }
 
     @Override

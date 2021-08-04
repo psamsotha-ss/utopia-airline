@@ -13,7 +13,7 @@ import com.ss.utopia.domain.Airport;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.domain.Route;
 
-import static com.ss.utopia.util.Converters.dateFromString;
+import static com.ss.utopia.util.Converters.dateTimeFromString;
 
 public class FlightRepository extends AbstractBaseRepository<Flight> {
 
@@ -62,7 +62,7 @@ public class FlightRepository extends AbstractBaseRepository<Flight> {
         while (rs.next()) {
             Flight flight = new Flight();
             flight.setId(rs.getInt("flight_id"));
-            flight.setDepartureTime(dateFromString(rs.getString("departure_time")));
+            flight.setDepartureTime(dateTimeFromString(rs.getString("departure_time")));
             flight.setReservedSeats(rs.getInt("reserved_seats"));
             flight.setSeatPrice(BigDecimal.valueOf(rs.getFloat("seat_price")));
 

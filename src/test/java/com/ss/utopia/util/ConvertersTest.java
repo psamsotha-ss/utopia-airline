@@ -15,7 +15,7 @@ public class ConvertersTest {
     @Test
     public void testDateFromString() {
          final String dateString = "2021-08-03 10:20:30";
-         LocalDateTime dateTime = Converters.dateFromString(dateString);
+         LocalDateTime dateTime = Converters.dateTimeFromString(dateString);
 
          assertThat(dateTime.getYear()).isEqualTo(2021);
          assertThat(dateTime.getMonth().getValue()).isEqualTo(8);
@@ -30,14 +30,7 @@ public class ConvertersTest {
     public void testDateFromStringWrongFormat() {
         final String dateString = "08-03-2021 10:20:30";
         assertThatExceptionOfType(DateTimeParseException.class)
-                .isThrownBy(() -> Converters.dateFromString(dateString));
-    }
-
-    @Test
-    public void testFormatDateTimeForDb() {
-        LocalDateTime dateTime = LocalDateTime.of(2021, 8, 3, 10, 10, 10);
-        assertThat(Converters.formatDateTimeForDb(dateTime))
-                .isEqualTo("2021-08-03 10:10:10");
+                .isThrownBy(() -> Converters.dateTimeFromString(dateString));
     }
 
     @Test

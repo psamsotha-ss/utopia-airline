@@ -18,10 +18,10 @@ import com.ss.utopia.repository.FlightRepository;
 import com.ss.utopia.service.FlightService;
 
 import static com.ss.utopia.util.Converters.DB_DATE_TIME_FORMAT;
-import static com.ss.utopia.util.Converters.dateFromString;
-import static com.ss.utopia.util.Converters.formatDateTimeForDb;
+import static com.ss.utopia.util.Converters.dateTimeFromString;
 import static com.ss.utopia.util.Converters.getLocalTimeFromUtc;
 import static com.ss.utopia.util.Converters.getUtcTimeFromLocal;
+import static com.ss.utopia.util.Formatters.formatDateTimeForDb;
 import static com.ss.utopia.util.StringUtils.newLine;
 
 public class FlightUpdateMenu extends AbstractMenu {
@@ -101,7 +101,7 @@ public class FlightUpdateMenu extends AbstractMenu {
                 String input = prompt("What is the new departure date/time? ");
                 LocalDateTime newDepartTime;
                 try {
-                    newDepartTime = dateFromString(input);
+                    newDepartTime = dateTimeFromString(input);
                 } catch (DateTimeParseException ex) {
                     printNoColor(input + " must be in format " + DB_DATE_TIME_FORMAT);
                     printNewLine();

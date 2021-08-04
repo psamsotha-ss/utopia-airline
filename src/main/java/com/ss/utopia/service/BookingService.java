@@ -2,6 +2,8 @@ package com.ss.utopia.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,7 @@ import com.ss.utopia.db.DatabaseManager;
 import com.ss.utopia.db.PersistenceException;
 import com.ss.utopia.domain.Booking;
 import com.ss.utopia.domain.Flight;
+import com.ss.utopia.domain.Passenger;
 import com.ss.utopia.domain.User;
 import com.ss.utopia.repository.BookingRepository;
 import com.ss.utopia.repository.BookingUserRepository;
@@ -22,11 +25,11 @@ public class BookingService {
 
     private static final Logger logger = LogManager.getLogger(BookingService.class);
 
-    private final BookingUserRepository bookingUserRepository;
-    private final BookingRepository bookingRepository;
-    private final FlightBookingRepository flightBookingRepository;
-    private final PassengerRepository passengerRepository;
-    private final Connection connection;
+    private BookingUserRepository bookingUserRepository;
+    private BookingRepository bookingRepository;
+    private FlightBookingRepository flightBookingRepository;
+    private PassengerRepository passengerRepository;
+    private Connection connection;
 
     public BookingService(BookingUserRepository bookingUserRepository,
                           BookingRepository bookingRepository,
@@ -38,6 +41,10 @@ public class BookingService {
         this.flightBookingRepository = flightBookingRepository;
         this.passengerRepository = passengerRepository;
         this.connection = connection;
+    }
+
+    public BookingService(BookingRepository bookingRepository) {
+        this.bookingRepository = bookingRepository;
     }
 
     /**
@@ -62,6 +69,38 @@ public class BookingService {
             passengerRepository.createPassenger(bookingId, traveler.getGivenName(),
                     traveler.getFamilyName(), dob, gender, address);
             return booking;
+        });
+    }
+
+    /**
+     * Get all bookings for a user.
+     * @param user the user
+     * @return the bookings for the user
+     * @throws PersistenceException if a database error occurs
+     */
+    public List<Booking> getBookingsByUser(User user) throws PersistenceException {
+        try {
+            return bookingRepository.findBookingsByUser(user.getId());
+        } catch (SQLException ex) {
+            logger.error("Could not get bookings: {}", ex.getMessage());
+            return Collections.emptyList();
+        }
+    }
+
+    /**
+     * Set the booking status to active or cancelled
+     * @param booking the booking to set the status for
+     * @param isActive true if the booking should be set to active, or false if the booking should be cancelled
+     * @throws PersistenceException if a database problem occurs while setting the status
+     */
+    public void setBookingStatus(Booking booking, Boolean isActive) throws PersistenceException {
+        runInTransaction(() -> {
+            bookingRepository.updateBookingStatus(booking.getId(), isActive);
+            Passenger passenger = passengerRepository.getPassengerByBookingId(booking.getId());
+            if (passenger != null) {
+                passengerRepository.deletePassenger(passenger.getId());
+            }
+            return null;
         });
     }
 
@@ -95,7 +134,15 @@ public class BookingService {
     }
 
     /**
-     * Get new instance of {@code BookingService}
+     * Get a new instance user for getting booking details
+     * @return the booking service
+     */
+    public static BookingService newBasicInstance() {
+        return new BookingService(new BookingRepository());
+    }
+
+    /**
+     * Get new instance of {@code BookingService} used for transactional operations
      * @return the new booking service
      */
     public static BookingService newInstance() {

@@ -54,6 +54,7 @@ public class TravelerMenu extends AbstractMenu {
     @Override
     protected String getInitialPrompt() {
         return "What would you like to do:" + newLine()
+                + newLine()
                 + "  1) Book a ticket" + newLine()
                 + "  2) Cancel an upcoming trip" + newLine();
     }
@@ -72,6 +73,7 @@ public class TravelerMenu extends AbstractMenu {
     public Map<Integer, MenuSelection> getMenuSelections() {
         Map<Integer, MenuSelection> selections = new HashMap<>();
         selections.put(1, new FlightSelectionMenu(traveler));
+        selections.put(2, new BookingCancellationMenu(traveler));
         return selections;
     }
 }
