@@ -7,7 +7,6 @@ import com.ss.utopia.console.Color;
 import com.ss.utopia.domain.Flight;
 import com.ss.utopia.menu.AbstractMenu;
 import com.ss.utopia.menu.MenuSelection;
-import com.ss.utopia.menu.admin.AdminMenu;
 
 import static com.ss.utopia.util.Formatters.formatFlight;
 import static com.ss.utopia.util.StringUtils.newLine;
